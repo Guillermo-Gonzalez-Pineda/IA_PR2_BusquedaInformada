@@ -8,7 +8,7 @@ class Nodo {
     Nodo(int x, int y, int coste);
 
     //Setters
-    void setFuncionBusqueda(std::pair<int, int> posicion_salida);
+    void setFuncionBusqueda(std::pair<int, int> posicion_salida, int tipo_funcion = 1);
     void setPadre(Nodo*);
 
     //Getters
@@ -34,10 +34,19 @@ Nodo::Nodo(int x, int y, int coste) {
 
 /* SETTERS */
 
-void Nodo::setFuncionBusqueda(std::pair<int, int> posicion_salida) {
-  //Calculamos el valor de la funcion h(n)
-  int funcion_h = (abs(posicion_salida.first - coordenadas_.first) + abs(posicion_salida.second - coordenadas_.second)) * W;
-  //Sumamos el valor de h(n) + g(n), teniendo como resultado: f(n)
+void Nodo::setFuncionBusqueda(std::pair<int, int> posicion_salida, int tipo_funcion) {
+  int funcion_h = 0;
+  switch (tipo_funcion) {
+    case 1:  // Distancia Manhattan
+      funcion_h = W * (abs(posicion_salida.first - coordenadas_.first) + abs(posicion_salida.second - coordenadas_.second));
+      break;
+    case 2:  // Distancia Euclidea
+      funcion_h = W * sqrt(pow(posicion_salida.first - coordenadas_.first, 2) + pow(posicion_salida.second - coordenadas_.second, 2));
+      break;
+    case 3:  // Distancia Chebyshev
+      funcion_h = W * std::max(abs(posicion_salida.first - coordenadas_.first), abs(posicion_salida.second - coordenadas_.second));
+      break;
+  }
   valor_funcion_busqueda_ = funcion_h + valor_coste_real_;
 }
 

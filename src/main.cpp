@@ -5,8 +5,9 @@ void menu() {
   std::cout << "1. Imprimir laberinto" << std::endl;
   std::cout << "2. Modificar entrada" << std::endl;
   std::cout << "3. Modificar salida" << std::endl;
-  std::cout << "4. Buscar salida" << std::endl;
-  std::cout << "5. Salir" << std::endl;
+  std::cout << "4. Cambiar Funcion de Busqueda" << std::endl;
+  std::cout << "5. Buscar salida" << std::endl;
+  std::cout << "6. Salir" << std::endl;
 }
 
 int main(int argc, char *argv[]) {
@@ -30,9 +31,8 @@ int main(int argc, char *argv[]) {
   Laberinto laberinto(archivo);
   Busqueda_A busqueda(laberinto);
 
-  int opcion;
-  int nueva_entrada_x, nueva_entrada_y, nueva_salida_x, nueva_salida_y;
-  do {
+  int opcion = 0;
+  while(opcion != 6) {
     menu();
     std::cin >> opcion;
 
@@ -40,37 +40,45 @@ int main(int argc, char *argv[]) {
       case 1:
         laberinto.imprimirLaberinto();
         break;
-        
       case 2:
-        std::cout << "Introduce la coordenada 'x' de la nueva entrada: ";
+        int nueva_entrada_x, nueva_entrada_y;
+        std::cout << "Introduce la nueva coordenada X de la entrada: ";
         std::cin >> nueva_entrada_x;
-        std::cout << "Introduce la coordenada 'y' de la nueva entrada: ";
+        std::cout << "Introduce la nueva coordenada Y de la entrada: ";
         std::cin >> nueva_entrada_y;
         laberinto.modificarEntrada(nueva_entrada_x, nueva_entrada_y);
         break;
-
       case 3:
-        std::cout << "Introduce la coordenada 'x' de la nueva salida: ";
+        int nueva_salida_x, nueva_salida_y;
+        std::cout << "Introduce la nueva coordenada X de la salida: ";
         std::cin >> nueva_salida_x;
-        std::cout << "Introduce la coordenada 'y' de la nueva salida: ";
+        std::cout << "Introduce la nueva coordenada Y de la salida: ";
         std::cin >> nueva_salida_y;
         laberinto.modificarSalida(nueva_salida_x, nueva_salida_y);
         break;
-
       case 4:
+        int nueva_funcion;
+        std::cout << "¿Qué función de búsqueda deseas utilizar?" << std::endl;
+        std::cout << "  1. Distancia Euclidiana" << std::endl;
+        std::cout << "  2. Distancia Manhattan" << std::endl;
+        std::cout << "  3. Distancia Chebyshev" << std::endl;
+        std::cin >> nueva_funcion;
+
+        busqueda.cambiarFuncionBusqueda(nueva_funcion);
+        break;
+      case 5:
         busqueda.inicializarBusqueda();
         busqueda.imprimirCamino();
         busqueda.limpiarCamino();
         break;
-      case 5:
-        std::cout << "Saliendo del programa" << std::endl;
+      case 6:
+        std::cout << "Saliendo del programa..." << std::endl;
         break;
-
       default:
         std::cout << "Opción no válida" << std::endl;
         break;
     }
-  } while(opcion != 5);
+  }
 
   return 0;
 }

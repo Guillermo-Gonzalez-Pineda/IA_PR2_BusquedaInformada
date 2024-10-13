@@ -8,6 +8,7 @@ class Busqueda_A {
     void marcarCamino(Nodo*);
     void limpiarCamino();
     void imprimirCamino();
+    void cambiarFuncionBusqueda(int tipo_funcion);
 
   private:
     Nodo* nodo_inicio_;
@@ -15,6 +16,7 @@ class Busqueda_A {
     std::vector<Nodo*> nodos_disponibles_;
     int num_nodos_generados_;
     int num_nodos_inspeccionados_;
+    int tipo_funcion_busqueda_ = 1;
 };
 
 void Busqueda_A::inicializarBusqueda() {
@@ -22,7 +24,7 @@ void Busqueda_A::inicializarBusqueda() {
   std::pair<int, int> posicion_entrada = laberinto_.getPosicionEntrada();
   std::pair<int, int> posicion_salida = laberinto_.getPosicionSalida();
   nodo_inicio_ = new Nodo(posicion_entrada.first, posicion_entrada.second, 0);
-  nodo_inicio_->setFuncionBusqueda(posicion_salida);
+  nodo_inicio_->setFuncionBusqueda(posicion_salida, tipo_funcion_busqueda_);
 
   nodos_disponibles_.push_back(nodo_inicio_);
   std::set<std::pair<int, int>> nodos_visitados;
@@ -72,7 +74,7 @@ void Busqueda_A::inicializarBusqueda() {
       //Creamos el nodo con sus atributos
       Nodo* nodo_vecino = new Nodo(vecino.pos_x, vecino.pos_y, coste_real);
       nodo_vecino->setPadre(nodo_actual);
-      nodo_vecino->setFuncionBusqueda(posicion_salida);
+      nodo_vecino->setFuncionBusqueda(posicion_salida, tipo_funcion_busqueda_);
 
       //Guardamos el nodo en el vector de nodos disponibles
       nodos_disponibles_.push_back(nodo_vecino);
@@ -81,6 +83,10 @@ void Busqueda_A::inicializarBusqueda() {
   }
 
   std::cout << "No se ha encontrado ninguna salida" << std::endl;
+}
+
+void Busqueda_A::cambiarFuncionBusqueda(int tipo_funcion) {
+  tipo_funcion_busqueda_ = tipo_funcion;
 }
 
 void Busqueda_A::marcarCamino(Nodo* nodo_final) {
