@@ -6,6 +6,7 @@ class Busqueda_A {
     Busqueda_A(Laberinto& laberinto) : laberinto_(laberinto), nodo_inicio_(nullptr) {}
     void inicializarBusqueda();
     void marcarCamino(Nodo*);
+    void limpiarCamino();
     void imprimirCamino();
 
   private:
@@ -92,24 +93,41 @@ void Busqueda_A::marcarCamino(Nodo* nodo_final) {
   }
 }
 
-void Busqueda_A::imprimirCamino() {
-  const int CAMINO = 2;
-  const int MURO = 1;
-  const int LIBRE = 0;
-  for (int i = 0; i < laberinto_.getNumFilas(); i++) {
-    for (int j = 0; j < laberinto_.getNumColumnas(); j++) {
-      int valor = laberinto_.getValorCasilla({i, j});
+void Busqueda_A::limpiarCamino() {
+  for (int i = 0; i < laberinto_.getNumFilas(); ++i) {
+    for (int j = 0; j < laberinto_.getNumColumnas(); ++j) {
+      if (laberinto_.getValorCasilla({i, j}) == 2) {
+        laberinto_.setValorCasilla({i, j}, 0);
+      }
+    }
+  }
+}
 
-      if (valor == CAMINO) {
-        std::cout << YELLOW << "* " << RESET;
-      } else if (valor == MURO) {
-        std::cout << RED << valor << " " << RESET;
+void Busqueda_A::imprimirCamino() {
+  const std::string BACK_RED = "\033[41m  \033[0m"; // Muro
+  const std::string BACK_WHITE = "\033[47m  \033[0m"; // Espacio libre (blanco)
+  const std::string BACK_GREEN = "\033[42m  \033[0m"; // Camino encontrado
+  const std::string BACK_RESET = "\033[0m"; // Restablece los colores
+
+  for (int i = 0; i < laberinto_.getNumFilas(); ++i) {
+    for (int j = 0; j < laberinto_.getNumColumnas(); ++j) {
+      int valor = laberinto_.getValorCasilla({i, j});
+      if (valor == 1) {
+        std::cout << BACK_RED; // Muro
+      } else if (valor == 0) {
+        // No aplicar color, usar el color de fondo de la terminal
+        std::cout << BACK_RESET; // Restablecer color al fondo de la terminal
+        std::cout << "  "; // Espacio para mantener la forma
+      } else if (valor == 2) { // Valor para el camino
+        std::cout << BACK_GREEN; // Camino encontrado
       } else {
-        std::cout << valor << " ";
+        // Espacio "vacío" que utiliza el fondo de la terminal
+        std::cout << BACK_RESET; // Restablecer color al fondo de la terminal
+        std::cout << "  "; // Espacio para mantener la forma
       }
     }
     std::cout << std::endl;
   }
-  std::cout << std::endl;
+  std::cout << "\n" << std::endl;
 }
 

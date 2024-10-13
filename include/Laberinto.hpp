@@ -1,7 +1,7 @@
 #include "../lib/librerias.hpp"
 
 struct Vecino {
-  int valor;      // Valor del laberinto (0, 1, 3, 4, etc.)
+  int valor;      // Valor del laberinto
   int pos_x;     // Coordenada X del vecino
   int pos_y;     // Coordenada Y del vecino
   int coste;
@@ -12,6 +12,52 @@ struct Vecino {
 class Laberinto {
   public:
     Laberinto(std::ifstream& archivo);
+    void imprimirLaberinto() {
+      const std::string BACK_RED = "\033[41m  \033[0m"; // Muro
+      const std::string BACK_WHITE = "\033[47m  \033[0m"; // Espacio libre (blanco)
+      const std::string BACK_GREEN = "\033[42m  \033[0m"; // Camino encontrado
+      const std::string BACK_RESET = "\033[0m"; // Restablece los colores
+      const std::string BACK_YELLOW = "\033[43m  \033[0m"; // Espacio amarillo
+
+      for (int i = 0; i < num_filas_; ++i) {
+        for (int j = 0; j < num_columnas_; ++j) {
+          int valor = laberinto_[i][j];
+          if (valor == 1) {
+            std::cout << BACK_RED; // Muro
+          } else if (valor == 0) {
+            // No aplicar color, usar el color de fondo de la terminal
+            std::cout << BACK_RESET; // Restablecer color al fondo de la terminal
+            std::cout << "  "; // Espacio para mantener la forma
+          } else if (valor == 3) { // Valor para el camino
+            std::cout << BACK_GREEN; // Camino encontrado
+          } else if (valor == 4) {
+            std::cout << BACK_YELLOW;
+          } else {
+            // Espacio "vacío" que utiliza el fondo de la terminal
+            std::cout << BACK_RESET; // Restablecer color al fondo de la terminal
+            std::cout << "  "; // Espacio para mantener la forma
+          }
+        }
+        std::cout << std::endl;
+      }
+      std::cout << "\n" << std::endl;
+    }
+
+    void modificarEntrada(int nueva_entrada_x, int nueva_entrada_y) {
+      laberinto_[posicion_entrada_.first][posicion_entrada_.second] = 1;
+      // Actualizamos la posición de la entrada
+      posicion_entrada_ = {nueva_entrada_y, nueva_entrada_x};
+      // Marcamos la nueva entrada en el laberinto
+      laberinto_[nueva_entrada_y][nueva_entrada_x] = 3;
+    }
+
+    void modificarSalida(int nueva_salida_x, int nueva_salida_y) {
+      laberinto_[posicion_salida_.first][posicion_salida_.second] = 1;
+      // Actualizamos la posición de la salida
+      posicion_salida_ = {nueva_salida_y, nueva_salida_x};
+      // Marcamos la nueva salida en el laberinto
+      laberinto_[nueva_salida_y][nueva_salida_x] = 4;
+    }
 
     // Getters
     int getNumFilas() {return num_filas_;}
@@ -22,8 +68,8 @@ class Laberinto {
     int getValorCasilla(std::pair<int, int> coordenadas) {return laberinto_[coordenadas.first][coordenadas.second];}
 
     //Setters
-    void setValorCasilla(std::pair<int, int> coordenadas_cambiar) {
-      laberinto_[coordenadas_cambiar.first][coordenadas_cambiar.second] = 2;
+    void setValorCasilla(std::pair<int, int> coordenadas_cambiar, int valor = 2) {
+      laberinto_[coordenadas_cambiar.first][coordenadas_cambiar.second] = valor;
     }
 
   private:

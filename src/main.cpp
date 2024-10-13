@@ -1,6 +1,13 @@
 #include "../lib/librerias.hpp"
 #include "../include/Busqueda_A_estrella.hpp"
 
+void menu() {
+  std::cout << "1. Imprimir laberinto" << std::endl;
+  std::cout << "2. Modificar entrada" << std::endl;
+  std::cout << "3. Modificar salida" << std::endl;
+  std::cout << "4. Buscar salida" << std::endl;
+  std::cout << "5. Salir" << std::endl;
+}
 
 int main(int argc, char *argv[]) {
   //Comprobamos que el número de argumentos sea el correcto
@@ -22,10 +29,48 @@ int main(int argc, char *argv[]) {
 
   Laberinto laberinto(archivo);
   Busqueda_A busqueda(laberinto);
-  busqueda.inicializarBusqueda();
-  busqueda.imprimirCamino();
 
+  int opcion;
+  int nueva_entrada_x, nueva_entrada_y, nueva_salida_x, nueva_salida_y;
+  do {
+    menu();
+    std::cin >> opcion;
 
-  std::cout << "Encontro la salida" << std::endl;
+    switch(opcion) {
+      case 1:
+        laberinto.imprimirLaberinto();
+        break;
+        
+      case 2:
+        std::cout << "Introduce la coordenada 'x' de la nueva entrada: ";
+        std::cin >> nueva_entrada_x;
+        std::cout << "Introduce la coordenada 'y' de la nueva entrada: ";
+        std::cin >> nueva_entrada_y;
+        laberinto.modificarEntrada(nueva_entrada_x, nueva_entrada_y);
+        break;
+
+      case 3:
+        std::cout << "Introduce la coordenada 'x' de la nueva salida: ";
+        std::cin >> nueva_salida_x;
+        std::cout << "Introduce la coordenada 'y' de la nueva salida: ";
+        std::cin >> nueva_salida_y;
+        laberinto.modificarSalida(nueva_salida_x, nueva_salida_y);
+        break;
+
+      case 4:
+        busqueda.inicializarBusqueda();
+        busqueda.imprimirCamino();
+        busqueda.limpiarCamino();
+        break;
+      case 5:
+        std::cout << "Saliendo del programa" << std::endl;
+        break;
+
+      default:
+        std::cout << "Opción no válida" << std::endl;
+        break;
+    }
+  } while(opcion != 5);
+
   return 0;
 }
