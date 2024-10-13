@@ -19,6 +19,7 @@ class Laberinto {
     std::pair<int, int> getPosicionEntrada() {return posicion_entrada_;}
     std::pair<int, int> getPosicionSalida() {return posicion_salida_;}
     std::vector<Vecino> getVecinos(int x, int y);
+    int getValorCasilla(std::pair<int, int> coordenadas) {return laberinto_[coordenadas.first][coordenadas.second];}
 
     //Setters
     void setValorCasilla(std::pair<int, int> coordenadas_cambiar) {
@@ -32,6 +33,45 @@ class Laberinto {
     std::pair<int, int> posicion_entrada_;
     std::pair<int, int> posicion_salida_;
 };
+
+
+Laberinto::Laberinto(std::ifstream& archivo) {
+  std::string linea;
+
+  //Almacenamos el numero de lineas que tiene el laberinto
+  std::getline(archivo, linea);
+  num_filas_ = stoi(linea);
+
+  //Almacenamos el numero de columnas que tiene el laberinto
+  std::getline(archivo, linea);
+  num_columnas_ = stoi(linea);
+
+  // Leemos cada línea y la dividimos en columnas
+  for (int i = 0; i < num_filas_; i++) {
+    std::getline(archivo, linea);
+    std::stringstream stream(linea);
+    std::vector<int> fila;
+    int valor;
+
+    // Leemos cada valor en la línea
+    while (stream >> valor) {
+      fila.push_back(valor);
+
+      // Si el valor es 3 (entrada), almacenamos sus coordenadas
+      if (valor == 3) {
+        posicion_entrada_ = {i, static_cast<int>(fila.size() - 1)};
+      }
+      // Si el valor es 4 (salida), almacenamos sus coordenadas
+      if (valor == 4) {
+        posicion_salida_ = {i, static_cast<int>(fila.size() - 1)};
+      }
+    }
+
+    // Añadimos la fila al laberinto
+    laberinto_.push_back(fila);
+  }
+
+}
 
 std::vector<Vecino> Laberinto::getVecinos(int pos_x, int pos_y) {
   std::vector<Vecino> vector_vecinos;

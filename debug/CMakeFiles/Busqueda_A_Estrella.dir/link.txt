@@ -1,0 +1,1 @@
+/usr/bin/c++  -g -O0 -Wall -Wextra -Wpedantic -Weffc++  -rdynamic CMakeFiles/Busqueda_A_Estrella.dir/src/main.cpp.o  -o Busqueda_A_Estrella 

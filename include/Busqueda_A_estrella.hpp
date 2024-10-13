@@ -3,9 +3,10 @@
 
 class Busqueda_A {
   public:
-    Busqueda_A::Busqueda_A(Laberinto& laberinto) : laberinto_(laberinto), nodo_inicio_(nullptr) {}
+    Busqueda_A(Laberinto& laberinto) : laberinto_(laberinto), nodo_inicio_(nullptr) {}
     void inicializarBusqueda();
     void marcarCamino(Nodo*);
+    void imprimirCamino();
 
   private:
     Nodo* nodo_inicio_;
@@ -23,6 +24,7 @@ void Busqueda_A::inicializarBusqueda() {
   nodo_inicio_->setFuncionBusqueda(posicion_salida);
 
   nodos_disponibles_.push_back(nodo_inicio_);
+  std::set<std::pair<int, int>> nodos_visitados;
   
   while (!nodos_disponibles_.empty()) {
     //Calculamos cual es el nodo disponible con menor coste
@@ -42,6 +44,9 @@ void Busqueda_A::inicializarBusqueda() {
     //Eliminamos del vector, el nodo que acabamos de seleccionar
     nodos_disponibles_.erase(nodos_disponibles_.begin() + indice_min_coste);
 
+    // Añadimos el nodo actual a los visitados
+    nodos_visitados.insert(nodo_actual->getPosicion());
+
     //Si el nodo inspeccionado coincide con la posición de salida marcamos el camino de ese nodo
     if(nodo_actual->getPosicion() == posicion_salida) {
       marcarCamino(nodo_actual);
@@ -51,35 +56,30 @@ void Busqueda_A::inicializarBusqueda() {
     for(Vecino vecino : laberinto_.getVecinos(nodo_actual->getPosicion().first, nodo_actual->getPosicion().second)) {
       //Si el elemento evaluado es -1, quiere decir que no existe un vecino (será un borde)
       //Asi que no generamos ningun nodo y continuamos con el siguiente
-      if(vecino.valor == -1) {
+      if(vecino.valor == -1 || vecino.valor == 1) {
         continue;
       }
 
       std::pair<int, int> posicion_vecino = {vecino.pos_x, vecino.pos_y};
-      bool nodo_generado = false;
-      Nodo* padre = nodo_actual->getPadre();
-      while(padre != nullptr) {
-        if(padre->getPosicion() == posicion_vecino) {
-          nodo_generado = true;
-          break;
-        }
-        padre = padre->getPadre();
-      }    
 
-      if(!nodo_generado) {
-        //Calculamos el coste de la funcion g(n), sumando el coste de la transicion con el coste real del padre
-        int coste_real = nodo_actual->getCosteReal() + vecino.coste;
-        //Creamos el nodo con sus atributos
-        Nodo* nodo_vecino = new Nodo(vecino.pos_x, vecino.pos_y, coste_real);
-        nodo_vecino->setPadre(nodo_actual);
-        nodo_vecino->setFuncionBusqueda(posicion_salida);
+      if(nodos_visitados.find(posicion_vecino) != nodos_visitados.end()) {
+        continue;
+      }  
 
-        //Guardamos el nodo en el vector de nodos disponibles
-        nodos_disponibles_.push_back(nodo_vecino);
-      }
+      //Calculamos el coste de la funcion g(n), sumando el coste de la transicion con el coste real del padre
+      int coste_real = nodo_actual->getCosteReal() + vecino.coste;
+      //Creamos el nodo con sus atributos
+      Nodo* nodo_vecino = new Nodo(vecino.pos_x, vecino.pos_y, coste_real);
+      nodo_vecino->setPadre(nodo_actual);
+      nodo_vecino->setFuncionBusqueda(posicion_salida);
+
+      //Guardamos el nodo en el vector de nodos disponibles
+      nodos_disponibles_.push_back(nodo_vecino);
     }
 
   }
+
+  std::cout << "No se ha encontrado ninguna salida" << std::endl;
 }
 
 void Busqueda_A::marcarCamino(Nodo* nodo_final) {
@@ -90,5 +90,26 @@ void Busqueda_A::marcarCamino(Nodo* nodo_final) {
     laberinto_.setValorCasilla(actual->getPosicion());
     actual = actual->getPadre();
   }
+}
+
+void Busqueda_A::imprimirCamino() {
+  const int CAMINO = 2;
+  const int MURO = 1;
+  const int LIBRE = 0;
+  for (int i = 0; i < laberinto_.getNumFilas(); i++) {
+    for (int j = 0; j < laberinto_.getNumColumnas(); j++) {
+      int valor = laberinto_.getValorCasilla({i, j});
+
+      if (valor == CAMINO) {
+        std::cout << YELLOW << "* " << RESET;
+      } else if (valor == MURO) {
+        std::cout << RED << valor << " " << RESET;
+      } else {
+        std::cout << valor << " ";
+      }
+    }
+    std::cout << std::endl;
+  }
+  std::cout << std::endl;
 }
 
