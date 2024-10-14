@@ -16,7 +16,7 @@ class Nodo {
     void setPadre(Nodo*);
 
     //Getters
-    int getFuncionBusqueda();
+    int getCosteHeuristico();
     Nodo* getPadre();
     std::pair<int, int> getPosicion() {return coordenadas_;}
     int getCosteReal() {return valor_coste_real_;}
@@ -60,7 +60,7 @@ void Nodo::setPadre(Nodo* padre) {
 
 
 /* GETTERS */
-int Nodo::getFuncionBusqueda() {
+int Nodo::getCosteHeuristico() {
   return valor_funcion_busqueda_;
 }
 

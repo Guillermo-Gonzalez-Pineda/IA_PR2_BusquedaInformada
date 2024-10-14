@@ -13,7 +13,8 @@ class Busqueda_A {
   private:
     Nodo* nodo_inicio_;
     Laberinto& laberinto_;
-    std::vector<Nodo*> nodos_disponibles_;
+    std::vector<Nodo*> nodos_abiertos_;
+    std::vector<Nodo*> nodos_cerrados_;
     int num_nodos_generados_;
     int num_nodos_inspeccionados_;
     int tipo_funcion_busqueda_ = 1;
@@ -21,109 +22,103 @@ class Busqueda_A {
 };
 
 void Busqueda_A::inicializarBusqueda() {
-  //Obtenemos la posicion del nodo de entrada
-  std::pair<int, int> posicion_entrada = laberinto_.getPosicionEntrada();
-  std::pair<int, int> posicion_salida = laberinto_.getPosicionSalida();
+  //Inicializamos las posiciones Entrada y Salida
+  std::pair<int, int> posicion_entrada;
+  std::pair<int, int> posicion_salida;
+
+  //Creamos el nodo inicial con un coste real de 0
   nodo_inicio_ = new Nodo(posicion_entrada.first, posicion_entrada.second, 0);
+  //Asignamos el coste de la funcion f(n)
   nodo_inicio_->setFuncionBusqueda(posicion_salida, tipo_funcion_busqueda_);
 
-  nodos_disponibles_.push_back(nodo_inicio_);
-  std::vector<Nodo*> nodos_visitados;
-  
-  while (!nodos_disponibles_.empty()) {
-    //Calculamos cual es el nodo disponible con menor coste
-    int coste = nodos_disponibles_[0]->getFuncionBusqueda();
-    int indice_min_coste = 0;
-    for(int i = 1; i < nodos_disponibles_.size(); i++) {
-      if(nodos_disponibles_[i]->getFuncionBusqueda() < coste) {
-        coste = nodos_disponibles_[i]->getFuncionBusqueda();
-        indice_min_coste = i;
+  //Añadimos el nodo inicial a la lista de nodos abiertos o disponibles
+  nodos_abiertos_.push_back(nodo_inicio_);
+
+  while(!nodos_abiertos_.empty()) {
+    //Visitamos el nodo abierto con menor coste heurístico
+    int coste_heuristico = nodos_abiertos_[0]->getCosteHeuristico();
+    int indice_menor_coste_heuristico = 0;
+    for(int i = 1; i < nodos_abiertos_.size(); i++) {
+      if(nodos_abiertos_[i]->getCosteHeuristico() < coste_heuristico) {
+        coste_heuristico = nodos_abiertos_[i]->getCosteHeuristico();
+        indice_menor_coste_heuristico = i;
       }
     }
 
-    //Inspeccionamos el nodo disponible de menor coste
-    Nodo* nodo_actual = nodos_disponibles_[indice_min_coste];
-    num_nodos_inspeccionados_++;
-    num_iteraciones_++;
+    Nodo* nodo_actual = nodos_abiertos_[indice_menor_coste_heuristico];
 
-    //Eliminamos del vector, el nodo que acabamos de seleccionar
-    nodos_disponibles_.erase(nodos_disponibles_.begin() + indice_min_coste);
+    //Guardamos el nodo actual en nodos_cerrados_
+    nodos_cerrados_.push_back(nodo_actual);
 
-    // Añadimos el nodo actual a los visitados
-    nodos_visitados.push_back(nodo_actual);
+    //Eliminamos el nodo actual de nodos_abiertos_
+    nodos_abiertos_.erase(nodos_abiertos_.begin() + indice_menor_coste_heuristico);
 
-    
-
-    //Si el nodo inspeccionado coincide con la posición de salida marcamos el camino de ese nodo
+    //Comprobamos si el nodo actual coincide con la posición final
     if(nodo_actual->getPosicion() == posicion_salida) {
-      std::cout << "Camino encontrado" << std::endl;
-      std::cout << "Numero Iteraciones: " << num_iteraciones_ << std::endl;
-      std::cout << "Numero Nodos Visitados: " << num_nodos_inspeccionados_ << std::endl;
       marcarCamino(nodo_actual);
+      laberinto_.imprimirLaberinto();
       return;
     }
 
-    for(Vecino vecino : laberinto_.getVecinos(nodo_actual->getPosicion().first, nodo_actual->getPosicion().second)) {
-      //Si el elemento evaluado es -1, quiere decir que no existe un vecino (será un borde)
-      //Asi que no generamos ningun nodo y continuamos con el siguiente
-      if(vecino.valor == -1 || vecino.valor == 1) {
+    //Si no es el nodo final, exploramos sus nodos vecinos
+    for(auto& vecino : laberinto_.getVecinos(nodo_actual->getPosicion().first, nodo_actual->getPosicion().second)) {
+      //Comprobamos que no sea un muro o un valor externo al laberinto
+      if(vecino.valor == 1 || vecino.valor == -1) {
         continue;
       }
 
-      std::pair<int, int> posicion_vecino = {vecino.pos_x, vecino.pos_y};
-
-      //Comprobamos si el vecino ya ha sido visitado
-      bool visitado = false;
-      for(Nodo* nodo : nodos_visitados) {
-        if(nodo->getPosicion() == posicion_vecino) {
-          visitado = true;
+      //Comprobar que el vecino no se encuentra en la lista cerrada
+      bool encontrado = false;
+      for(auto& nodo : nodos_cerrados_) {
+        if(nodo->getPosicion() == vecino.coordenadas) {
+          encontrado = true;
           break;
         }
       }
-
-      if(visitado) {
+      //Si se encuentra en la lista cerrada, continuamos con el siguiente vecino
+      if(encontrado) {
         continue;
-      } 
+      }   
 
-      //Comprobamos si el vecino ya está en nodos_disponibles_
-      bool en_lista = false;
-
-      for(Nodo* nodo : nodos_disponibles_) {
-        if(nodo->getPosicion() == posicion_vecino) {
-          en_lista = true;
-          break;
-        }
-      }
-
-      if(en_lista) {
-        continue;
-      }
-
-      //Calculamos el coste de la funcion g(n), sumando el coste de la transicion con el coste real del padre
-      int coste_real = nodo_actual->getCosteReal() + vecino.coste;
-      //Creamos el nodo con sus atributos
-      Nodo* nodo_vecino = new Nodo(vecino.pos_x, vecino.pos_y, coste_real);
-      nodo_vecino->setPadre(nodo_actual);
+      //Calculamos el coste heuristico del vecino
+      int coste_real_vecino = nodo_actual->getCosteReal() + vecino.coste;
+      Nodo* nodo_vecino = new Nodo(vecino.coordenadas.first, vecino.coordenadas.second, coste_real_vecino);
       nodo_vecino->setFuncionBusqueda(posicion_salida, tipo_funcion_busqueda_);
 
-      //Comprobamos si hay un nodo con la misma posicion en nodos_disponibles_ que tenga un coste mayor
-      //Si lo hay, lo eliminamos y añadimos el nuevo nodo
-      bool insertar_nodo = true;
-      for(int i = 0; i < nodos_disponibles_.size(); i++) {
-        if(nodos_disponibles_[i]->getPosicion() == nodo_vecino->getPosicion() && nodos_disponibles_[i]->getFuncionBusqueda() > nodo_vecino->getFuncionBusqueda()) {
-          nodos_disponibles_.erase(nodos_disponibles_.begin() + i);
-          insertar_nodo = true;
+      //Comprobamos si el vecino se encuentra en la lista abierta
+      encontrado = false;
+      for(auto& nodo : nodos_abiertos_) {
+        if(nodo->getPosicion() == vecino.coordenadas) {
+          encontrado = true;
           break;
         }
       }
-      if(insertar_nodo) {
-        nodos_disponibles_.push_back(nodo_vecino);
+
+      //Si el vecino no se encuentra en la lista abierta, lo añadimos
+      if(!encontrado) {
+        nodo_vecino->setPadre(nodo_actual);
+        nodos_abiertos_.push_back(nodo_vecino);
+      } else {
+        //Si el vecino se encuentra en la lista abierta, comprobamos si el coste heuristico es menor
+        for(auto& nodo : nodos_abiertos_) {
+          if(nodo->getPosicion() == vecino.coordenadas) {
+            if(nodo_vecino->getCosteHeuristico() < nodo->getCosteHeuristico()) {
+              nodo->setPadre(nodo_actual);
+              nodo->setFuncionBusqueda(posicion_salida, tipo_funcion_busqueda_);
+            }
+            break;
+          }
+        }
+      
       }
     }
 
+    
+
   }
 
-  std::cout << "No se ha encontrado ninguna salida" << std::endl;
+
+  
 }
 
 void Busqueda_A::cambiarFuncionBusqueda(int tipo_funcion) {

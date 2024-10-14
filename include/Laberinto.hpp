@@ -2,11 +2,10 @@
 
 struct Vecino {
   int valor;      // Valor del laberinto
-  int pos_x;     // Coordenada X del vecino
-  int pos_y;     // Coordenada Y del vecino
+  std::pair<int, int> coordenadas;  // Coordenadas del vecino
   int coste;
 
-  Vecino(int v, int x, int y, int z) : valor(v), pos_x(x), pos_y(y), coste(z) {}
+  Vecino(int v, std::pair<int, int> c, int z) : valor(v), coordenadas(c), coste(z) {}
 };
 
 class Laberinto {
@@ -169,9 +168,10 @@ std::vector<Vecino> Laberinto::getVecinos(int pos_x, int pos_y) {
 
     // Verificamos que el vecino está dentro de los límites del laberinto
     if ((vecino_x >= 0 && vecino_x < laberinto_.size()) && (vecino_y >= 0 && vecino_y < laberinto_[vecino_x].size())) {
-      vector_vecinos.emplace_back(laberinto_[vecino_x][vecino_y], vecino_x, vecino_y, coste_temp);
+      std::pair<int, int> coordenadas_vecino = {vecino_x, vecino_y};
+      vector_vecinos.emplace_back(laberinto_[vecino_x][vecino_y], coordenadas_vecino, coste_temp);
     } else {
-      vector_vecinos.emplace_back(-1, -1, -1, -1);  // Indicador de que no hay vecino
+      vector_vecinos.emplace_back(-1, std::pair<int, int>{-1, -1}, -1);  // Indicador de que no hay vecino
     }
   }
 
