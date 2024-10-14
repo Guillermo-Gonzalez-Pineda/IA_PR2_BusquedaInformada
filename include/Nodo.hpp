@@ -14,6 +14,7 @@ class Nodo {
     //Setters
     void setFuncionBusqueda(std::pair<int, int> posicion_salida, int tipo_funcion = 1);
     void setPadre(Nodo*);
+    void setCosteReal(int coste) {valor_coste_real_ = coste;}
 
     //Getters
     int getCosteHeuristico();

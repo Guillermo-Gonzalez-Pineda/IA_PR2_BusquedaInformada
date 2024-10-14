@@ -155,6 +155,6 @@ std::vector<Vecino> Laberinto::getVecinos(int pos_x, int pos_y) {
 
 
 /* SET VALOR CASILLA */
-void Laberinto::setValorCasilla(std::pair<int, int> coordenadas_cambiar, int valor = 2) {
+void Laberinto::setValorCasilla(std::pair<int, int> coordenadas_cambiar, int valor) {
   laberinto_[coordenadas_cambiar.first][coordenadas_cambiar.second] = valor;
 }

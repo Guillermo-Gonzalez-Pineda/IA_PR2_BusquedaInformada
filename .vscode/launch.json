@@ -6,7 +6,7 @@
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/debug/Busqueda_A_Estrella",
-      "args": ["../M_3.txt"],
+      "args": ["../M_3.txt", "../S_3.txt"],
       "stopAtEntry": true,
       "cwd": "${workspaceFolder}/debug",
       "environment": [],

@@ -98,6 +98,7 @@ void Busqueda_A::inicializarBusqueda(std::ofstream& archivo_salida) {
           if(nodo->getPosicion() == vecino.coordenadas) {
             if(nodo_vecino->getCosteHeuristico() < nodo->getCosteHeuristico()) {
               nodo->setPadre(nodo_actual);
+              nodo->setCosteReal(coste_real_vecino);
               nodo->setFuncionBusqueda(posicion_salida, tipo_funcion_busqueda_);
             }
             break;
