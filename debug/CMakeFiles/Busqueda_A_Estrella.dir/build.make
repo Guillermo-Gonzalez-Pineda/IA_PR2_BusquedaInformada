@@ -70,17 +70,62 @@ CMakeFiles/Busqueda_A_Estrella.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Busqueda_A_Estrella.dir/src/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/src/main.cpp" -o CMakeFiles/Busqueda_A_Estrella.dir/src/main.cpp.s
 
+CMakeFiles/Busqueda_A_Estrella.dir/src/Nodo.cpp.o: CMakeFiles/Busqueda_A_Estrella.dir/flags.make
+CMakeFiles/Busqueda_A_Estrella.dir/src/Nodo.cpp.o: ../src/Nodo.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Busqueda_A_Estrella.dir/src/Nodo.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Busqueda_A_Estrella.dir/src/Nodo.cpp.o -c "/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/src/Nodo.cpp"
+
+CMakeFiles/Busqueda_A_Estrella.dir/src/Nodo.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Busqueda_A_Estrella.dir/src/Nodo.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/src/Nodo.cpp" > CMakeFiles/Busqueda_A_Estrella.dir/src/Nodo.cpp.i
+
+CMakeFiles/Busqueda_A_Estrella.dir/src/Nodo.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Busqueda_A_Estrella.dir/src/Nodo.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/src/Nodo.cpp" -o CMakeFiles/Busqueda_A_Estrella.dir/src/Nodo.cpp.s
+
+CMakeFiles/Busqueda_A_Estrella.dir/src/Laberinto.cpp.o: CMakeFiles/Busqueda_A_Estrella.dir/flags.make
+CMakeFiles/Busqueda_A_Estrella.dir/src/Laberinto.cpp.o: ../src/Laberinto.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Busqueda_A_Estrella.dir/src/Laberinto.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Busqueda_A_Estrella.dir/src/Laberinto.cpp.o -c "/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/src/Laberinto.cpp"
+
+CMakeFiles/Busqueda_A_Estrella.dir/src/Laberinto.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Busqueda_A_Estrella.dir/src/Laberinto.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/src/Laberinto.cpp" > CMakeFiles/Busqueda_A_Estrella.dir/src/Laberinto.cpp.i
+
+CMakeFiles/Busqueda_A_Estrella.dir/src/Laberinto.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Busqueda_A_Estrella.dir/src/Laberinto.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/src/Laberinto.cpp" -o CMakeFiles/Busqueda_A_Estrella.dir/src/Laberinto.cpp.s
+
+CMakeFiles/Busqueda_A_Estrella.dir/src/Busqueda_A_estrella.cpp.o: CMakeFiles/Busqueda_A_Estrella.dir/flags.make
+CMakeFiles/Busqueda_A_Estrella.dir/src/Busqueda_A_estrella.cpp.o: ../src/Busqueda_A_estrella.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Busqueda_A_Estrella.dir/src/Busqueda_A_estrella.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Busqueda_A_Estrella.dir/src/Busqueda_A_estrella.cpp.o -c "/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/src/Busqueda_A_estrella.cpp"
+
+CMakeFiles/Busqueda_A_Estrella.dir/src/Busqueda_A_estrella.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Busqueda_A_Estrella.dir/src/Busqueda_A_estrella.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/src/Busqueda_A_estrella.cpp" > CMakeFiles/Busqueda_A_Estrella.dir/src/Busqueda_A_estrella.cpp.i
+
+CMakeFiles/Busqueda_A_Estrella.dir/src/Busqueda_A_estrella.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Busqueda_A_Estrella.dir/src/Busqueda_A_estrella.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/src/Busqueda_A_estrella.cpp" -o CMakeFiles/Busqueda_A_Estrella.dir/src/Busqueda_A_estrella.cpp.s
+
 # Object files for target Busqueda_A_Estrella
 Busqueda_A_Estrella_OBJECTS = \
-"CMakeFiles/Busqueda_A_Estrella.dir/src/main.cpp.o"
+"CMakeFiles/Busqueda_A_Estrella.dir/src/main.cpp.o" \
+"CMakeFiles/Busqueda_A_Estrella.dir/src/Nodo.cpp.o" \
+"CMakeFiles/Busqueda_A_Estrella.dir/src/Laberinto.cpp.o" \
+"CMakeFiles/Busqueda_A_Estrella.dir/src/Busqueda_A_estrella.cpp.o"
 
 # External object files for target Busqueda_A_Estrella
 Busqueda_A_Estrella_EXTERNAL_OBJECTS =
 
 Busqueda_A_Estrella: CMakeFiles/Busqueda_A_Estrella.dir/src/main.cpp.o
+Busqueda_A_Estrella: CMakeFiles/Busqueda_A_Estrella.dir/src/Nodo.cpp.o
+Busqueda_A_Estrella: CMakeFiles/Busqueda_A_Estrella.dir/src/Laberinto.cpp.o
+Busqueda_A_Estrella: CMakeFiles/Busqueda_A_Estrella.dir/src/Busqueda_A_estrella.cpp.o
 Busqueda_A_Estrella: CMakeFiles/Busqueda_A_Estrella.dir/build.make
 Busqueda_A_Estrella: CMakeFiles/Busqueda_A_Estrella.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable Busqueda_A_Estrella"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable Busqueda_A_Estrella"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Busqueda_A_Estrella.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -4,6 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/src/Busqueda_A_estrella.cpp" "/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/debug/CMakeFiles/Busqueda_A_Estrella.dir/src/Busqueda_A_estrella.cpp.o"
+  "/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/src/Laberinto.cpp" "/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/debug/CMakeFiles/Busqueda_A_Estrella.dir/src/Laberinto.cpp.o"
+  "/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/src/Nodo.cpp" "/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/debug/CMakeFiles/Busqueda_A_Estrella.dir/src/Nodo.cpp.o"
   "/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/src/main.cpp" "/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/debug/CMakeFiles/Busqueda_A_Estrella.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

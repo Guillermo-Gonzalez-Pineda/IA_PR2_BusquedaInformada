@@ -123,6 +123,87 @@ Busqueda_A_Estrella/fast:
 	$(MAKE) -f CMakeFiles/Busqueda_A_Estrella.dir/build.make CMakeFiles/Busqueda_A_Estrella.dir/build
 .PHONY : Busqueda_A_Estrella/fast
 
+src/Busqueda_A_estrella.o: src/Busqueda_A_estrella.cpp.o
+
+.PHONY : src/Busqueda_A_estrella.o
+
+# target to build an object file
+src/Busqueda_A_estrella.cpp.o:
+	$(MAKE) -f CMakeFiles/Busqueda_A_Estrella.dir/build.make CMakeFiles/Busqueda_A_Estrella.dir/src/Busqueda_A_estrella.cpp.o
+.PHONY : src/Busqueda_A_estrella.cpp.o
+
+src/Busqueda_A_estrella.i: src/Busqueda_A_estrella.cpp.i
+
+.PHONY : src/Busqueda_A_estrella.i
+
+# target to preprocess a source file
+src/Busqueda_A_estrella.cpp.i:
+	$(MAKE) -f CMakeFiles/Busqueda_A_Estrella.dir/build.make CMakeFiles/Busqueda_A_Estrella.dir/src/Busqueda_A_estrella.cpp.i
+.PHONY : src/Busqueda_A_estrella.cpp.i
+
+src/Busqueda_A_estrella.s: src/Busqueda_A_estrella.cpp.s
+
+.PHONY : src/Busqueda_A_estrella.s
+
+# target to generate assembly for a file
+src/Busqueda_A_estrella.cpp.s:
+	$(MAKE) -f CMakeFiles/Busqueda_A_Estrella.dir/build.make CMakeFiles/Busqueda_A_Estrella.dir/src/Busqueda_A_estrella.cpp.s
+.PHONY : src/Busqueda_A_estrella.cpp.s
+
+src/Laberinto.o: src/Laberinto.cpp.o
+
+.PHONY : src/Laberinto.o
+
+# target to build an object file
+src/Laberinto.cpp.o:
+	$(MAKE) -f CMakeFiles/Busqueda_A_Estrella.dir/build.make CMakeFiles/Busqueda_A_Estrella.dir/src/Laberinto.cpp.o
+.PHONY : src/Laberinto.cpp.o
+
+src/Laberinto.i: src/Laberinto.cpp.i
+
+.PHONY : src/Laberinto.i
+
+# target to preprocess a source file
+src/Laberinto.cpp.i:
+	$(MAKE) -f CMakeFiles/Busqueda_A_Estrella.dir/build.make CMakeFiles/Busqueda_A_Estrella.dir/src/Laberinto.cpp.i
+.PHONY : src/Laberinto.cpp.i
+
+src/Laberinto.s: src/Laberinto.cpp.s
+
+.PHONY : src/Laberinto.s
+
+# target to generate assembly for a file
+src/Laberinto.cpp.s:
+	$(MAKE) -f CMakeFiles/Busqueda_A_Estrella.dir/build.make CMakeFiles/Busqueda_A_Estrella.dir/src/Laberinto.cpp.s
+.PHONY : src/Laberinto.cpp.s
+
+src/Nodo.o: src/Nodo.cpp.o
+
+.PHONY : src/Nodo.o
+
+# target to build an object file
+src/Nodo.cpp.o:
+	$(MAKE) -f CMakeFiles/Busqueda_A_Estrella.dir/build.make CMakeFiles/Busqueda_A_Estrella.dir/src/Nodo.cpp.o
+.PHONY : src/Nodo.cpp.o
+
+src/Nodo.i: src/Nodo.cpp.i
+
+.PHONY : src/Nodo.i
+
+# target to preprocess a source file
+src/Nodo.cpp.i:
+	$(MAKE) -f CMakeFiles/Busqueda_A_Estrella.dir/build.make CMakeFiles/Busqueda_A_Estrella.dir/src/Nodo.cpp.i
+.PHONY : src/Nodo.cpp.i
+
+src/Nodo.s: src/Nodo.cpp.s
+
+.PHONY : src/Nodo.s
+
+# target to generate assembly for a file
+src/Nodo.cpp.s:
+	$(MAKE) -f CMakeFiles/Busqueda_A_Estrella.dir/build.make CMakeFiles/Busqueda_A_Estrella.dir/src/Nodo.cpp.s
+.PHONY : src/Nodo.cpp.s
+
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -159,6 +240,15 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... Busqueda_A_Estrella"
+	@echo "... src/Busqueda_A_estrella.o"
+	@echo "... src/Busqueda_A_estrella.i"
+	@echo "... src/Busqueda_A_estrella.s"
+	@echo "... src/Laberinto.o"
+	@echo "... src/Laberinto.i"
+	@echo "... src/Laberinto.s"
+	@echo "... src/Nodo.o"
+	@echo "... src/Nodo.i"
+	@echo "... src/Nodo.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

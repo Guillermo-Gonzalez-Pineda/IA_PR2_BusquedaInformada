@@ -57,9 +57,9 @@ include_directories(${PROJECT_SOURCE_DIR}/src)
 # Adds an executable target called "BusquedaNoInformada" to be built from the source files listed in the command invocation.
 add_executable(Busqueda_A_Estrella
     src/main.cpp
-    include/Nodo.hpp
-    include/Laberinto.hpp
-    include/Busqueda_A_estrella.hpp
+    src/Nodo.cpp
+    src/Laberinto.cpp
+    src/Busqueda_A_estrella.cpp
     )
 
 # Add expected compiler features to a target.
