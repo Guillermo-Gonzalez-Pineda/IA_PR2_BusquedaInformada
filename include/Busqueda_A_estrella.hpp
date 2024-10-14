@@ -17,6 +17,7 @@ class Busqueda_A {
     int num_nodos_generados_;
     int num_nodos_inspeccionados_;
     int tipo_funcion_busqueda_ = 1;
+    int num_iteraciones_ = 0;
 };
 
 void Busqueda_A::inicializarBusqueda() {
@@ -27,7 +28,7 @@ void Busqueda_A::inicializarBusqueda() {
   nodo_inicio_->setFuncionBusqueda(posicion_salida, tipo_funcion_busqueda_);
 
   nodos_disponibles_.push_back(nodo_inicio_);
-  std::set<std::pair<int, int>> nodos_visitados;
+  std::vector<Nodo*> nodos_visitados;
   
   while (!nodos_disponibles_.empty()) {
     //Calculamos cual es el nodo disponible con menor coste
@@ -43,15 +44,21 @@ void Busqueda_A::inicializarBusqueda() {
     //Inspeccionamos el nodo disponible de menor coste
     Nodo* nodo_actual = nodos_disponibles_[indice_min_coste];
     num_nodos_inspeccionados_++;
+    num_iteraciones_++;
 
     //Eliminamos del vector, el nodo que acabamos de seleccionar
     nodos_disponibles_.erase(nodos_disponibles_.begin() + indice_min_coste);
 
     // Añadimos el nodo actual a los visitados
-    nodos_visitados.insert(nodo_actual->getPosicion());
+    nodos_visitados.push_back(nodo_actual);
+
+    
 
     //Si el nodo inspeccionado coincide con la posición de salida marcamos el camino de ese nodo
     if(nodo_actual->getPosicion() == posicion_salida) {
+      std::cout << "Camino encontrado" << std::endl;
+      std::cout << "Numero Iteraciones: " << num_iteraciones_ << std::endl;
+      std::cout << "Numero Nodos Visitados: " << num_nodos_inspeccionados_ << std::endl;
       marcarCamino(nodo_actual);
       return;
     }
@@ -65,9 +72,32 @@ void Busqueda_A::inicializarBusqueda() {
 
       std::pair<int, int> posicion_vecino = {vecino.pos_x, vecino.pos_y};
 
-      if(nodos_visitados.find(posicion_vecino) != nodos_visitados.end()) {
+      //Comprobamos si el vecino ya ha sido visitado
+      bool visitado = false;
+      for(Nodo* nodo : nodos_visitados) {
+        if(nodo->getPosicion() == posicion_vecino) {
+          visitado = true;
+          break;
+        }
+      }
+
+      if(visitado) {
         continue;
-      }  
+      } 
+
+      //Comprobamos si el vecino ya está en nodos_disponibles_
+      bool en_lista = false;
+
+      for(Nodo* nodo : nodos_disponibles_) {
+        if(nodo->getPosicion() == posicion_vecino) {
+          en_lista = true;
+          break;
+        }
+      }
+
+      if(en_lista) {
+        continue;
+      }
 
       //Calculamos el coste de la funcion g(n), sumando el coste de la transicion con el coste real del padre
       int coste_real = nodo_actual->getCosteReal() + vecino.coste;
@@ -76,8 +106,19 @@ void Busqueda_A::inicializarBusqueda() {
       nodo_vecino->setPadre(nodo_actual);
       nodo_vecino->setFuncionBusqueda(posicion_salida, tipo_funcion_busqueda_);
 
-      //Guardamos el nodo en el vector de nodos disponibles
-      nodos_disponibles_.push_back(nodo_vecino);
+      //Comprobamos si hay un nodo con la misma posicion en nodos_disponibles_ que tenga un coste mayor
+      //Si lo hay, lo eliminamos y añadimos el nuevo nodo
+      bool insertar_nodo = true;
+      for(int i = 0; i < nodos_disponibles_.size(); i++) {
+        if(nodos_disponibles_[i]->getPosicion() == nodo_vecino->getPosicion() && nodos_disponibles_[i]->getFuncionBusqueda() > nodo_vecino->getFuncionBusqueda()) {
+          nodos_disponibles_.erase(nodos_disponibles_.begin() + i);
+          insertar_nodo = true;
+          break;
+        }
+      }
+      if(insertar_nodo) {
+        nodos_disponibles_.push_back(nodo_vecino);
+      }
     }
 
   }
@@ -134,6 +175,7 @@ void Busqueda_A::imprimirCamino() {
     }
     std::cout << std::endl;
   }
+  std::cout << num_iteraciones_ << " iteraciones" << std::endl;
   std::cout << "\n" << std::endl;
 }
 

@@ -6,6 +6,10 @@ class Nodo {
   public:
     //Constructor
     Nodo(int x, int y, int coste);
+    //Sobrecargar operador ==
+    bool operator==(const Nodo& nodo) {
+      return coordenadas_ == nodo.coordenadas_;
+    }
 
     //Setters
     void setFuncionBusqueda(std::pair<int, int> posicion_salida, int tipo_funcion = 1);
