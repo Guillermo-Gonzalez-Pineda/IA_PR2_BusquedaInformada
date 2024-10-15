@@ -77,9 +77,9 @@ void Laberinto::imprimirLaberinto() {
 void Laberinto::modificarEntrada(int nueva_entrada_x, int nueva_entrada_y) {
   laberinto_[posicion_entrada_.first][posicion_entrada_.second] = 1;
   // Actualizamos la posición de la entrada
-  posicion_entrada_ = {nueva_entrada_y, nueva_entrada_x};
+  posicion_entrada_ = {nueva_entrada_x, nueva_entrada_y};
   // Marcamos la nueva entrada en el laberinto
-  laberinto_[nueva_entrada_y][nueva_entrada_x] = 3;
+  laberinto_[nueva_entrada_x][nueva_entrada_y] = 3;
 }
 
 
@@ -87,9 +87,9 @@ void Laberinto::modificarEntrada(int nueva_entrada_x, int nueva_entrada_y) {
 void Laberinto::modificarSalida(int nueva_salida_x, int nueva_salida_y) {
   laberinto_[posicion_salida_.first][posicion_salida_.second] = 1;
   // Actualizamos la posición de la salida
-  posicion_salida_ = {nueva_salida_y, nueva_salida_x};
+  posicion_salida_ = {nueva_salida_x, nueva_salida_y};
   // Marcamos la nueva salida en el laberinto
-  laberinto_[nueva_salida_y][nueva_salida_x] = 4;
+  laberinto_[nueva_salida_x][nueva_salida_y] = 4;
 }
 
 

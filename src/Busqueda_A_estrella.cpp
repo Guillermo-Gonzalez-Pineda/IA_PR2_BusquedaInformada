@@ -233,7 +233,7 @@ void Busqueda_A::imprimirTabla(std::ofstream& archivo_salida, Nodo* nodo_final) 
   archivo_salida << "Posición Celda de Salida:        (" << laberinto_.getPosicionSalida().first << ", " << laberinto_.getPosicionSalida().second << ")" << std::endl;
 
   // Recuperar el camino encontrado
-  archivo_salida << "\nCamino Encontrado:              ";
+  archivo_salida << "Camino Encontrado:              ";
   while (actual != nullptr) {
     camino.push_back(actual);
     actual = actual->getPadre();

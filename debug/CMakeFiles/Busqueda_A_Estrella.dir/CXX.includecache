@@ -44,10 +44,6 @@ set
 ../include/Busqueda_A_estrella.hpp
 /home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/include/Busqueda_A_estrella.hpp
 
-/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/src/Nodo.cpp
-../include/Nodo.hpp
-/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/include/Nodo.hpp
-
 /home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/src/main.cpp
 ../lib/librerias.hpp
 /home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/lib/librerias.hpp
