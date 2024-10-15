@@ -1,0 +1,54 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/MODIFICACION/include/Busqueda_A_estrella.hpp
+Laberinto.hpp
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/MODIFICACION/include/Laberinto.hpp
+Nodo.hpp
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/MODIFICACION/include/Nodo.hpp
+
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/MODIFICACION/include/Laberinto.hpp
+../lib/librerias.hpp
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/MODIFICACION/lib/librerias.hpp
+
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/MODIFICACION/include/Nodo.hpp
+../lib/librerias.hpp
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/MODIFICACION/lib/librerias.hpp
+
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/MODIFICACION/lib/librerias.hpp
+iostream
+-
+vector
+-
+string
+-
+fstream
+-
+sstream
+-
+algorithm
+-
+utility
+-
+cmath
+-
+set
+-
+random
+-
+
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/MODIFICACION/src/Busqueda_A_estrella.cpp
+../include/Busqueda_A_estrella.hpp
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/MODIFICACION/include/Busqueda_A_estrella.hpp
+
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/MODIFICACION/src/main.cpp
+../lib/librerias.hpp
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/MODIFICACION/lib/librerias.hpp
+../include/Busqueda_A_estrella.hpp
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/MODIFICACION/include/Busqueda_A_estrella.hpp
+

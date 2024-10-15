@@ -1,0 +1,3 @@
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/build/CMakeFiles/rebuild_cache.dir
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/build/CMakeFiles/edit_cache.dir
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/build/CMakeFiles/Busqueda_A_Estrella.dir

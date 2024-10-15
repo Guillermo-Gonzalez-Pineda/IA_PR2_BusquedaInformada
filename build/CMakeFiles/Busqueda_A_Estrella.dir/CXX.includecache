@@ -1,0 +1,60 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/include/Busqueda_A_estrella.hpp
+Laberinto.hpp
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/include/Laberinto.hpp
+Nodo.hpp
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/include/Nodo.hpp
+
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/include/Laberinto.hpp
+../lib/librerias.hpp
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/lib/librerias.hpp
+
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/include/Nodo.hpp
+../lib/librerias.hpp
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/lib/librerias.hpp
+
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/lib/librerias.hpp
+iostream
+-
+vector
+-
+string
+-
+fstream
+-
+sstream
+-
+algorithm
+-
+utility
+-
+cmath
+-
+set
+-
+
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/src/Busqueda_A_estrella.cpp
+../include/Busqueda_A_estrella.hpp
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/include/Busqueda_A_estrella.hpp
+
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/src/Laberinto.cpp
+../include/Laberinto.hpp
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/include/Laberinto.hpp
+
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/src/Nodo.cpp
+../include/Nodo.hpp
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/include/Nodo.hpp
+
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/src/main.cpp
+../lib/librerias.hpp
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/lib/librerias.hpp
+../include/Busqueda_A_estrella.hpp
+/home/guillermo/Ingenieria Informatica/Inteligencia Artificial/Practica_2/include/Busqueda_A_estrella.hpp
+
